@@ -18,7 +18,8 @@ public class SteamDataParse {
                 if (token == JsonToken.FIELD_NAME && parser.getCurrentName().equals(appId)){
                     parser.nextToken();
 
-                    while (parser.nextToken() != JsonToken.END_OBJECT){
+                    while (!"ratings".equals(parser.getCurrentName())){
+                        parser.nextToken();
                         String dataFieldName = parser.getCurrentName();
 
                         parser.nextToken();
@@ -27,23 +28,12 @@ public class SteamDataParse {
                             nameSet=true;
                         } else if ("short_description".equals(dataFieldName)) {
                             game.description = parser.getValueAsString();
-                        }  else if ("pc_requirements".equals(dataFieldName)) {
-                            while (parser.nextToken() != JsonToken.END_OBJECT){
-                                parser.nextToken();
-                            }
-                        }  else if ("mac_requirements".equals(dataFieldName)) {
-                            while (parser.nextToken() != JsonToken.END_OBJECT){
-                                parser.nextToken();
-                            }
-                        }  else if ("linux_requirements".equals(dataFieldName)) {
-                            while (parser.nextToken() != JsonToken.END_OBJECT){
-                                parser.nextToken();
-                            }
                         }
                         else if ("developers".equals(dataFieldName)) {
                             int i = 0;
-                            while(parser.nextToken() != JsonToken.END_ARRAY){
+                            while(!"publishers".equals(parser.getValueAsString())){
                                 game.developers[i] = parser.getValueAsString();
+                                parser.nextToken();
                                 i++;
                             }
                         }

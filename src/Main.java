@@ -12,7 +12,7 @@ import java.net.http.HttpResponse;
 public class Main {
     public static void main(String[] args) {
         //String apiKey = System.getenv("APIKEY");
-        String appId = "39210";
+        String appId = "2521380";
         String url = "https://store.steampowered.com/api/appdetails?appids=" + appId;
         HttpClient client = HttpClient.newHttpClient();
         Game game = new Game();
