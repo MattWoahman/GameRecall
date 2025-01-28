@@ -1,6 +1,11 @@
-class Game {
+class SteamApp {
     public String name;
-    public String description;
+    public String short_description;
     public String[] developers = new String[10];
-    public String releaseDate;
+    public ReleaseDate release_date;
+
+    static class ReleaseDate {
+        String date;
+        boolean coming_soon;
+    }
 }
