@@ -1,5 +1,3 @@
-package src;
-
 class SteamApp {
     public static String name;
     public String short_description;
