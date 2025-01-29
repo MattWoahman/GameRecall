@@ -1,3 +1,5 @@
+package src;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -63,11 +65,23 @@ public class SteamDataParse {
        JsonObject appData = jsonObject.getAsJsonObject(id).getAsJsonObject("data");
        SteamApp app = new Gson().fromJson(appData, SteamApp.class);
        JsonObject dateObject = jsonObject.getAsJsonObject("release_date");
+
+       System.out.println(id);
+
        System.out.println(app.name);
        System.out.println(app.short_description);
        System.out.println(app.release_date.date);
        for (int i=0; i < app.developers.length; i++){
            System.out.println(app.developers[i]);
        }
+   }
+
+   static void jsonParserAccount(String jsonResponse) {
+       JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
+       JsonObject accountData = jsonObject.getAsJsonObject("response");
+       SteamAccount acc = new Gson().fromJson(accountData, SteamAccount.class);
+
+       System.out.println(acc.game_count);
+       System.out.println(acc.games[0].rtime_last_played);
    }
 }
