@@ -1,87 +1,47 @@
-package src;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import src.SteamAccount;
 
 public class SteamDataParse {
-   static void jsonParser(String jsonResponse, String appId, SteamApp game) {
-       /*JsonFactory factory = new JsonFactory();
-        boolean nameSet=false;
-        boolean release=false;
+    static void jsonParser(String jsonResponse) {
 
-        try (JsonParser parser = factory.createParser(jsonResponse))  {
-            while (!parser.isClosed()) {
-                JsonToken token = parser.nextToken();
-                if (token == null) {
-                    break;
-                }
-                if (token == JsonToken.FIELD_NAME && parser.getCurrentName().equals(appId)) {
-                    parser.nextToken();
+        JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
+        String id = jsonObject.keySet().iterator().next();
 
-                    while (!"ratings".equals(parser.getCurrentName())) {
-                        parser.nextToken();
-                        String dataFieldName = parser.getCurrentName();
+        JsonObject appData = jsonObject.getAsJsonObject(id).getAsJsonObject("data");
+        SteamApp app = new Gson().fromJson(appData, SteamApp.class);
+        jsonObject.getAsJsonObject("release_date");
+        jsonObject.getAsJsonObject("categories");
+        jsonObject.getAsJsonObject("genres");
 
-                        parser.nextToken();
-                        if ("name".equals(dataFieldName) && nameSet == false) {
-                            game.name = parser.getValueAsString();
-                            nameSet = true;
-                        } else if ("short_description".equals(dataFieldName)) {
-                            game.short_description = parser.getValueAsString();
-                        } else if ("developers".equals(dataFieldName)) {
-                            int i = 0;
-                            while (!"publishers".equals(parser.getValueAsString())) {
-                                game.developers[i] = parser.getValueAsString();
-                                parser.nextToken();
-                                i++;
-                            }
-                        } else if ("release_date".equals(dataFieldName) && release == false){
-                            parser.nextToken();
-                            parser.nextToken();
-                            parser.nextToken();
-                            game.release_date = parser.getValueAsString();
-                            release = true;
-                        }
-                    }
-                    System.out.println("Name: " + game.name);
-                    System.out.println("Description: " + game.short_description);
-                    System.out.println("Developers: ");
-                    for (int i = 0; i < game.developers.length; i++) {
-                        if (game.developers[i] != null) {
-                            System.out.println("    " + game.developers[i]);
-                        }
-                    }
-                    System.out.println("Release Date: " + game.release_date);
-                    return;
-                }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        System.out.println("Name: " + app.name);
+        System.out.println("Description: " + app.short_description);
+        System.out.println("Release Date: " + app.release_date.date);
+        System.out.println("Developers: ");
+        for (int i=0; i < app.developers.length; i++){
+            System.out.println("     " + app.developers[i]);
         }
-  */
-       JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
-       String id = jsonObject.keySet().iterator().next();
-       JsonObject appData = jsonObject.getAsJsonObject(id).getAsJsonObject("data");
-       SteamApp app = new Gson().fromJson(appData, SteamApp.class);
-       JsonObject dateObject = jsonObject.getAsJsonObject("release_date");
+        System.out.println("Publishers: ");
+        for (int i=0; i < app.publishers.length; i++){
+            System.out.println("     " + app.publishers[i]);
+        }
+        System.out.println("Categories: ");
+        for (int i=0; i < app.categories.length; i++){
+            System.out.println("    " + app.categories[i].description);
+        }
+        System.out.println("Genres: ");
+        for (int i=0; i < app.genres.length; i++){
+            System.out.println("    " + app.genres[i].description);
+        }
+    }
 
-       System.out.println(id);
+    static void jsonParserAccount(String jsonResponse) {
+        JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
+        JsonObject accountData = jsonObject.getAsJsonObject("response");
+        SteamAccount acc = new Gson().fromJson(accountData, SteamAccount.class);
 
-       System.out.println(app.name);
-       System.out.println(app.short_description);
-       System.out.println(app.release_date.date);
-       for (int i=0; i < app.developers.length; i++){
-           System.out.println(app.developers[i]);
-       }
-   }
-
-   static void jsonParserAccount(String jsonResponse) {
-       JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
-       JsonObject accountData = jsonObject.getAsJsonObject("response");
-       SteamAccount acc = new Gson().fromJson(accountData, SteamAccount.class);
-
-       System.out.println(acc.game_count);
-       System.out.println(acc.games[0].rtime_last_played);
-   }
+        System.out.println(acc.game_count);
+        System.out.println(acc.games[0].rtime_last_played);
+    }
 }
