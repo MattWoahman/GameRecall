@@ -24,7 +24,7 @@ public class Main {
         game.name = gameName;
 
         // info needed for getting what games an accoutn has
-        String apiKeyH = "FD4C9BC4DE59D04EB6D81DCBEDC96CB0"; // hard coded my api key when i was doing this
+        String apiKeyH = ""; // hard coded my api key when i was doing this
         String userId = "76561198080896495"; // garrett's steam id
         String urlAcc = "https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=" + apiKeyH + "&steamid=" + userId + "&include_appinfo=true";
 

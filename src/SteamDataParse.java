@@ -1,7 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import src.SteamAccount;
 
 public class SteamDataParse {
     static void jsonParser(String jsonResponse) {
