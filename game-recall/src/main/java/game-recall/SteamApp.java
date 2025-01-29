@@ -1,3 +1,4 @@
+package java;
 class SteamApp {
     public String name;
     public String short_description;

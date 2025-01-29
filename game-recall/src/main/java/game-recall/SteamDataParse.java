@@ -1,6 +1,8 @@
+package java;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 
 public class SteamDataParse {
    static void jsonParser(String jsonResponse, String appId, SteamApp game) {
