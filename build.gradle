@@ -1,0 +1,37 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.logbusters'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(23)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Exclude Jackson from the starter-web and other dependencies
+	implementation('org.springframework.boot:spring-boot-starter-web') {
+		exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+	}
+	// Ensure Jackson is excluded from all possible Spring Boot starter dependencies
+	implementation('org.springframework.boot:spring-boot-starter-json') {
+		exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+	}
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'com.google.code.gson:gson:2.11.0'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
