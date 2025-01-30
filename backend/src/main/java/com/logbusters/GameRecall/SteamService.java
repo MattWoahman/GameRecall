@@ -8,10 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 
 @Service
@@ -32,6 +29,7 @@ public class SteamService {
         }
         System.out.println(appId);
         String url = "/api/appdetails?appids=" + appId;
+        System.out.println(appId);
         Mono<String> response = webClient.get()
                 .uri(url)
                 .retrieve()
@@ -51,28 +49,22 @@ public class SteamService {
     }
 */
 
-    private static String searchForString(String targetString) throws FileNotFoundException {
-        JsonElement fileJson;
+    private static String searchForString(String targetString) {
+
         String appId = "null";
-        try (FileReader file = new FileReader("steam.txt")) {
-            fileJson = JsonParser.parseReader(file);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        String filePath = "steam_app_list.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(" ", 2);
+                if (parts.length >= 2 && parts[1].equalsIgnoreCase(targetString)){
+                    appId = parts[0];
+                    break;
+                }
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-
-        JsonObject jsonObject = fileJson.getAsJsonObject();
-        JsonObject appList = jsonObject.getAsJsonObject("applist");
-        JsonArray appsArray = appList.getAsJsonArray("apps");
-
-        for (JsonElement appElement : appsArray){
-            JsonObject appObject = appElement.getAsJsonObject();
-            String appName = appObject.get("name").getAsString();
-            if (appName.equalsIgnoreCase(targetString)){
-                appId = appObject.get("appid").getAsString();
-                break;
-            }
         }
         return appId;
     }

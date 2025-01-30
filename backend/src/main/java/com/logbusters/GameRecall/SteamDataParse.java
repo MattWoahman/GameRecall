@@ -13,8 +13,8 @@ public class SteamDataParse {
        String id = jsonObject.keySet().iterator().next();
 
        JsonObject appData = jsonObject.getAsJsonObject(id).getAsJsonObject("data");
-
        SteamApp app = new Gson().fromJson(appData, SteamApp.class);
+       app.name = appData.get("name").getAsString();
        app.short_description = appData.get("short_description").getAsString();
 
        JsonObject releaseDateObj = appData.getAsJsonObject("release_date");
