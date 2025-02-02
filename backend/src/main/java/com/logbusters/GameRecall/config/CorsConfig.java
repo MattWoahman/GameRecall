@@ -13,7 +13,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/steam/**")  // Allow API endpoints
-                        .allowedOrigins("http://localhost:3000")  // Allow React frontend
+                        .allowedOrigins("http://localhost:5173")  // Allow React frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowCredentials(true);
             }

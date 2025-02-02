@@ -1,0 +1,108 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  /background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+
+  background-image: url("/Images/BackgroundTexture.jpg"); /* Use your image */
+  background-repeat: repeat; /* Makes it tile across the screen */
+  background-size: auto; /* Keeps the original image size */
+}
+
+.game-info-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.game-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.game-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.game-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.game-description {
+  font-size: 16px;
+  color: color;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.game-section {
+  margin-bottom: 20px;
+}
+
+.game-section h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.game-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.game-list-item {
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.release-date {
+  font-size: 16px;
+  color: #ddd;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
