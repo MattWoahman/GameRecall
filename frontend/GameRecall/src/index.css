@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Workbench", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -19,8 +19,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-
-  background-image: url("/Images/BackgroundTexture.jpg"); /* Use your image */
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(10,10,41,1) 35%, rgba(38,3,31,1) 100%);
   background-repeat: repeat; /* Makes it tile across the screen */
   background-size: auto; /* Keeps the original image size */
 }
@@ -29,17 +29,35 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Share Tech Mono", monospace;
+}
+
+.game-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.page-title{
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ddd;
+  max-width: fit-content;
+  white-space: nowrap;
+  margin-right: 30%;
 }
 
 .game-form {
   display: flex;
+  align-items: centerl;
+  height:50px;
   gap: 10px;
   margin-bottom: 20px;
 }
 
 .game-input {
   flex: 1;
+  white-space: nowrap;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -49,9 +67,10 @@ body {
 .submit-button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #cf8300;
   color: white;
   border: none;
+  white-space: nowrap;
   border-radius: 4px;
   cursor: pointer;
 }

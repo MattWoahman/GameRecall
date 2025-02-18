@@ -2,6 +2,7 @@ package com.logbusters.GameRecall;
 
 class SteamApp {
     public String name;
+    public String imageSrc;
     public String short_description;
     public String[] developers = new String[10];
     public ReleaseDate release_date;

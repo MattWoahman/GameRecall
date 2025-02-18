@@ -38,8 +38,9 @@ const GameInfo = () => {
   };
 
   return (
-    <div className="game-info-container">
+  <div className="game-info-container">
   <form onSubmit={handleSubmit} className="game-form">
+    <div className="page-title">Game Recall</div>
     <input
       type="text"
       value={gameName}
@@ -55,8 +56,9 @@ const GameInfo = () => {
   {error && <div className="error-message">Error: {error}</div>}
 
   {gameData && (
-    <div className="game-details">
+    <div>
       <h2 className="game-title">{gameData.name}</h2>
+      <img className = "game-image" src={gameData.imageSrc}></img>
       <p className="game-description">{gameData.short_description}</p>
 
       <div className="game-section">

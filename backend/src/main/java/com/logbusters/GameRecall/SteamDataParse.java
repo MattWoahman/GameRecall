@@ -14,6 +14,7 @@ public class SteamDataParse {
 
        JsonObject appData = jsonObject.getAsJsonObject(id).getAsJsonObject("data");
        SteamApp app = new Gson().fromJson(appData, SteamApp.class);
+       app.imageSrc = appData.get("header_image").getAsString();
        app.name = appData.get("name").getAsString();
        app.short_description = appData.get("short_description").getAsString();
 

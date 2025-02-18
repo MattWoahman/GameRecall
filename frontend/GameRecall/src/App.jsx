@@ -7,7 +7,6 @@ import GameInfo from './components/GameInfo';
 function App() {
   return (
     <div className="App">
-      <h1>Steam Game Finder</h1>
         <GameInfo />
       </div>
   );
