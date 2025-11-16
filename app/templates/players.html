@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>User Report</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.steamid.label }}<br>
+            {{ form.steamid(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <div>
+        {% if player %}
+        <img src="{{ player.avatar}}">
+        <p> Steam ID: {{ player.steam_id }} </p>
+        <p> Steam Name: {{ player.steam_name }} </p>
+        <p> Profile: {{ player.profile_url }} </p>
+        <p> Last log-off: {{ player.last_logoff }} </p>
+        <p> Account created: {{ player.time_created }} </p>
+        {% if player.gameextrainfo %}
+            <p> Current Game: {{ player.gameextrainfo }} </p>
+        {% endif %}
+        <p> 1st Most Played: {{ player.first_game }} </p>
+        <p> 2nd Most Played: {{ player.second_game }} </p>
+        <p> 3rd Most Played: {{ player.third_game }} </p>
+        {% endif %}
+    </div>
+{% endblock %}
