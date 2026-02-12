@@ -25,5 +25,4 @@ def games():
     if form.validate_on_submit():
         game_id = form.gameid.data
         game = get_game_info(game_id)
-        print(game.name)
     return render_template('games.html', game=game,form=form)

@@ -14,6 +14,15 @@ def load_steam_games(path):
         STEAM_GAMES = json.load(f)
     print("Loaded " + str(len(STEAM_GAMES)) + " games from " + path) 
 
+class Game():
+    name = ''
+    steam_appid = ''
+    is_free = ''
+    short_description = ''
+    header_image = ''
+    capsule_image = ''
+    developers = []
+    publishers = []
 
 class Player():
     steam_id = ''
@@ -59,19 +68,26 @@ def play_time_get(player):
     player.third_game = requests.get("https://store.steampowered.com/api/appdetails?appids=" + str(third_appid)).json()[str(third_appid)]['data']['name']
 
 def get_game_info(game_id):
-    entry = STEAM_GAMES.get(str(game_id))
-    if entry:
-        if entry.get("success"):
-            if entry['data']['type'] == "game":
-                game = entry['data']
-                name = game['name']
-            else:
-                name = None
-        else:
-            name = None
-    else:
-        name = None
-    return name
+    steam_game_info_url = "https://store.steampowered.com/api/appdetails?appids=" + game_id.strip()
+    response = requests.get(steam_game_info_url)
+    report = response.json()
+    game_info = report[game_id]
+    cur_game = ''
+
+    if game_info['success'] == True:
+        game = game_info['data']
+        cur_game = Game()
+        cur_game.name = game['name']
+        cur_game.steam_appid = game['steam_appid']
+        cur_game.header_image = game['header_image']
+        cur_game.is_free = game['is_free']
+        for developer in game['developers']:
+            cur_game.developers.append(developer)
+        for publisher in game['publishers']:
+            cur_game.publishers.append(publisher)
+        cur_game.capsule_image = game['capsule_image']
+
+    return cur_game
 
 def steam_player_id(player_id):
     steamID = player_id

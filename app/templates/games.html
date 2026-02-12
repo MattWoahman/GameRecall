@@ -13,7 +13,7 @@
     <div>
         {% if game %}
         <img src="{{ game.capsule_image}}">
-        <p> Game ID: {{ game.steam_id }} </p>
+        <p> Game ID: {{ game.steam_appid }} </p>
         <p> Steam Name: {{ game.name }} </p>
         <p> Developers:</p>
         {% for developer in game.developers %}
