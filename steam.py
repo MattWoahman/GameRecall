@@ -129,7 +129,7 @@ def steam_player_id(player_id):
 
         player_list.append(cur_player)
 
-    connection = psycopg2.connect(database="gamerecall", user="gamerecalldba", password="test", host="192.168.1.182", port=5432)    
+    connection = psycopg2.connect(database="gamerecall", user="gamerecalldba", password="test", host="thehomans.org", port=5432)    
     cursor = connection.cursor()
     cursor.execute("INSERT INTO players (steam_id, profile_url, avatar, last_logoff, time_created, first_game, second_game, third_game, steam_name, player_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,1)", 
                    (cur_player.steam_id, cur_player.profile_url,cur_player.avatar,cur_player.last_logoff,cur_player.time_created,cur_player.first_game,cur_player.second_game,cur_player.third_game,cur_player.steam_name))
