@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template
-from steam import steam_player_id,STEAM_GAMES, get_game_info
+from steam import steam_player_id, get_game_info
 from app.forms import UserForm,GameForm
 
 
