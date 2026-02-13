@@ -43,6 +43,7 @@ class Player():
 
 def play_time_get(player):
     steamID = player.steam_id
+    api_key="0AA30FC317E4A3ADCA63BD9F0C13A273"
     steam_owned_games_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" + api_key + "&steamid="+ steamID + "&format=json"
     response = requests.get(steam_owned_games_url)
     report = response.json()

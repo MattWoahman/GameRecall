@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Game Report</h1>
+    <h1 class="center-text">Game Report</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
-        <p>
+        <p class="center-text">
             {{ form.gameid.label }}<br>
             {{ form.gameid(size=32) }}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p class="center-text">{{ form.submit() }}</p>
     </form>
-    <div>
+    <div class="center-text">
         {% if game %}
         <img src="{{ game.capsule_image}}">
         <p> Game ID: {{ game.steam_appid }} </p>
-        <p> Steam Name: {{ game.name }} </p>
+        <p > Steam Name: {{ game.name }} </p>
         <p> Developers:</p>
         {% for developer in game.developers %}
         <ul>{{ developer }} </ul>
