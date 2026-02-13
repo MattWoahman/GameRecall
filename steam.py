@@ -96,41 +96,42 @@ def steam_player_id(player_id):
     response = requests.get(steam_player_url)
     report = response.json()
 
-    for player in report['response']['players']:
+    if len(report['response']['players']) !=0:
+        for player in report['response']['players']:
 
-        cur_player = Player()
-        cur_player.steam_id = player['steamid']
-        cur_player.steam_name = player['personaname']
-        cur_player.profile_url = player['profileurl']
-        cur_player.avatar = player['avatarfull']
-        cur_player.last_logoff = str(datetime.fromtimestamp(int(player['lastlogoff'])))
-        cur_player.time_created = str(datetime.fromtimestamp(int(player['timecreated'])))
-        if player.get('realname'):
-            cur_player.real_name = player['realname']
-        if player.get('loccountrycode'):
-            cur_player.country_code = player['loccountrycode']
-        if player.get('gameid'):
-            cur_player.gameid
-        if player.get('gameid'):
-            cur_player.gameid = player['gameid']
-        if player.get('gameserverip'):
-            cur_player.gameserverip = player.get('gameserverip')
-        if player.get('gameextrainfo'):
-            cur_player.gameextrainfo = player.get('gameextrainfo')
+            cur_player = Player()
+            cur_player.steam_id = player['steamid']
+            cur_player.steam_name = player['personaname']
+            cur_player.profile_url = player['profileurl']
+            cur_player.avatar = player['avatarfull']
+            cur_player.last_logoff = str(datetime.fromtimestamp(int(player['lastlogoff'])))
+            cur_player.time_created = str(datetime.fromtimestamp(int(player['timecreated'])))
+            if player.get('realname'):
+                cur_player.real_name = player['realname']
+            if player.get('loccountrycode'):
+                cur_player.country_code = player['loccountrycode']
+            if player.get('gameid'):
+                cur_player.gameid
+            if player.get('gameid'):
+                cur_player.gameid = player['gameid']
+            if player.get('gameserverip'):
+                cur_player.gameserverip = player.get('gameserverip')
+            if player.get('gameextrainfo'):
+                cur_player.gameextrainfo = player.get('gameextrainfo')
+            
+            play_time_get(cur_player)
         
-        play_time_get(cur_player)
-       
 
-        player_list.append(cur_player)
+            player_list.append(cur_player)
 
-    connection = psycopg2.connect(database="gamerecall", user="gamerecalldba", password="test", host="thehomans.org", port=5432)    
-    cursor = connection.cursor()
-    cursor.execute("INSERT INTO players (steam_id, profile_url, avatar, last_logoff, time_created, first_game, second_game, third_game, steam_name, player_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,1)", 
-                   (cur_player.steam_id, cur_player.profile_url,cur_player.avatar,cur_player.last_logoff,cur_player.time_created,cur_player.first_game,cur_player.second_game,cur_player.third_game,cur_player.steam_name))
-    connection.commit()
-    connection.close()
-    print("sent!")
-    return cur_player
+        connection = psycopg2.connect(database="gamerecall", user="gamerecalldba", password="test", host="thehomans.org", port=5432)    
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO players (steam_id, profile_url, avatar, last_logoff, time_created, first_game, second_game, third_game, steam_name, player_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,1)", 
+                    (cur_player.steam_id, cur_player.profile_url,cur_player.avatar,cur_player.last_logoff,cur_player.time_created,cur_player.first_game,cur_player.second_game,cur_player.third_game,cur_player.steam_name))
+        connection.commit()
+        connection.close()
+        print("sent!")
+        return cur_player
     
     
 
