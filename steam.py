@@ -10,14 +10,6 @@ api_key=os.getenv("STEAM_API_KEY")
 # nothing much, just working on the steam.py file
 player_list = []
 
-def load_steam_games(path):
-    global STEAM_GAMES
-    if not os.path.exists(path):
-        raise FileNotFoundError("Can find" + path)
-    with open(path, 'r', encoding='utf=8') as f:
-        STEAM_GAMES = json.load(f)
-    print("Loaded " + str(len(STEAM_GAMES)) + " games from " + path) 
-
 class Game():
     name = ''
     steam_appid = ''
@@ -88,9 +80,11 @@ def get_game_info(game_id):
         cur_game.header_image = game['header_image']
         cur_game.is_free = game['is_free']
         for developer in game['developers']:
-            cur_game.developers.append(developer)
+            if developer not in cur_game.developers:
+                cur_game.developers.append(developer)
         for publisher in game['publishers']:
-            cur_game.publishers.append(publisher)
+            if developer not in cur_game.publishers:
+                cur_game.publishers.append(publisher)
         cur_game.capsule_image = game['capsule_image']
 
     return cur_game
