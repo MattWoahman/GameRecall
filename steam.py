@@ -2,9 +2,12 @@ import requests
 import os
 import json
 from datetime import datetime
+import psycopg2
+
 api_key=os.getenv("STEAM_API_KEY")
 #hi matt
 # what up?
+# nothing much, just working on the steam.py file
 player_list = []
 
 def load_steam_games(path):
@@ -42,6 +45,7 @@ class Player():
     third_game = ''
 
 def play_time_get(player):
+
     steamID = player.steam_id
     api_key="0AA30FC317E4A3ADCA63BD9F0C13A273"
     steam_owned_games_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=" + api_key + "&steamid="+ steamID + "&format=json"
@@ -121,10 +125,17 @@ def steam_player_id(player_id):
             cur_player.gameextrainfo = player.get('gameextrainfo')
         
         play_time_get(cur_player)
-        print(cur_player.first_game)
+       
 
         player_list.append(cur_player)
-    
+
+    connection = psycopg2.connect(database="gamerecall", user="gamerecalldba", password="test", host="192.168.1.182", port=5432)    
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO players (steam_id, profile_url, avatar, last_logoff, time_created, first_game, second_game, third_game, steam_name, player_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,1)", 
+                   (cur_player.steam_id, cur_player.profile_url,cur_player.avatar,cur_player.last_logoff,cur_player.time_created,cur_player.first_game,cur_player.second_game,cur_player.third_game,cur_player.steam_name))
+    connection.commit()
+    connection.close()
+    print("sent!")
     return cur_player
     
     
