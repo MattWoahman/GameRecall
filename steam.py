@@ -7,6 +7,7 @@ import psycopg2
 api_key=os.getenv("STEAM_API_KEY")
 #hi matt
 # what up?
+# nothing much, just working on the steam.py file
 player_list = []
 
 def load_steam_games(path):
