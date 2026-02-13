@@ -13,7 +13,7 @@
     <div class="center-text">
         {% if player %}
             
-            <a href="{{ player.profile_url}}"> <!--Takes you to their steam profile-->
+            <a href="{{ player.profile_url}}"> <!--Steam profile hyperlink-->
             <img src="{{ player.avatar}}" class="hover-pfp">
             </a>
         <p> Steam ID: {{ player.steam_id }} </p>
@@ -24,9 +24,9 @@
             <p> Current Game: {{ player.gameextrainfo }} </p>
         {% endif %}
         <div class="center-left-aligned"> <!-- Making this a separate division for formatting purposes - Jonny-->
-        <p> 1<sup>st</sup> Most Played: {{ player.first_game }} </p>
-        <p> 2<sup>nd</sup> Most Played: {{ player.second_game }} </p>
-        <p> 3<sup>rd</sup> Most Played: {{ player.third_game }} </p>
+            <p> 1<sup>st</sup> Most Played: {{ player.first_game }} </p>
+            <p> 2<sup>nd</sup> Most Played: {{ player.second_game }} </p>
+            <p> 3<sup>rd</sup> Most Played: {{ player.third_game }} </p>
         </div>
         {% endif %}
     </div>
