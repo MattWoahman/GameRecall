@@ -1,10 +1,20 @@
 <html>
 <head>
 <style>
+    @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
     body {
         background-color: whitesmoke;
         margin: 0;
-        backgroud-size: cover;
+        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -28,6 +38,24 @@
         transform: scale(1.05);
         box-shadow: 0 10px 20px rgba(0,0,0,0.25);
     }
+    h1{
+        font-family: 'Jost', sans-serif;
+        font-size: 45px;
+    }
+    .players{
+        display: flex;
+        flex-direction: row;
+    }
+    .players-info{
+        align-items: center;
+        padding-left: 30%;
+        animation: fadeIn 1s ease-in-out forwards;
+        opacity: 0; 
+    }
+    .title-and-form{
+        font-family: 'Jost', sans-serif;
+        padding-left: 20px;
+    }
     .top-bar {
          display: flex;
          align-items: center;
@@ -38,25 +66,32 @@
          height: 4%;
          background-color:whitesmoke;
          border-bottom: 2px #E8E8E8 solid;
-         color:#DAEFFB;
+         color:black;
          padding: 10px 20px;
          box-sizing: border;
     }
-      .top-bar-button {
+    .title{
+        padding-right: 10px;
+    }
+    .top-bar-button {
             text-decoration:none; 
             color:black;
             padding:4px 12px;
-            font-family: 'Jersey 20', sans-serif;
-            font-size: 20px;
+            font-family: 'Jost', sans-serif;
+            font-size: 18px;
             align-items: center;
       }
       </style>
+      <script src="https://kit.fontawesome.com/9291b41967.js" crossorigin="anonymous"></script>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
    </head>
    <body>
       <div class="top-bar">
+        <div class="title">
+            <h1>Game <i class="fa-solid fa-gamepad"style="font-size:30px"></i> Recall</h1>
+        </div>
         <div class="top-bar-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
