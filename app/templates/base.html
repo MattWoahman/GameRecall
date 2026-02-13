@@ -1,46 +1,28 @@
 <html>
-   <head>
-      <style>
-         .center-text{
-         text-align: center;
-         width: 50%;
-         margin: 0 auto;
-         }
-         .center-left-aligned {
-         width: 25%;
-         margin: 0 auto;
-         text-align: left;
-         }
-         .top-bar {
-            position: fixed;
-            top:0;
-            left:0;
-            width:100%;
-            background-color:#441d5e;
-            color:#DAEFFB;
-            padding: 10px 20px;
-            box-sizing: border;
-         }
-         .top-bar-button {
-            text-decoration:none; 
-            color:#DAEFFB;
-            border: 1px black solid; 
-            border-radius: 20px; 
-            padding:4px 4px;
-            font-family: 'Jersey 20', sans-serif;
-         }
-      </style>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
-   </head>
-   <body>
-      <div class="top-bar">
-         <a href="/player" class="top-bar-button">Players</a>
-         <a href="/games" class="top-bar-button">Games</a>
-      </div>
-      <div style="padding-top:60px;">
-         {% block content %}{% endblock %}
-      </div>
-   </body>
+<head>
+<style>
+    .center-text{
+        text-align: center;
+        width: 50%;
+        margin: 0 auto;
+        }
+    .center-left-aligned {
+        width: 25%;
+        margin: 0 auto;
+        text-align: left;
+    }
+    .hover-pfp{
+        border: 5px solid black;
+        border-radius: 16px;
+        transition: transform 0.3s ease, box-shadow 0.3 ease;
+    }
+    .hover-pfp:hover{
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+</style>
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
 </html>
