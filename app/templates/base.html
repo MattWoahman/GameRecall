@@ -1,9 +1,19 @@
 <html>
 <head>
 <style>
+    @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
     body {
+        background-color: whitesmoke;
         margin: 0;
-        background-image: url("{{ url_for('static', filename='images/computah.jpg') }}");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -28,35 +38,76 @@
         transform: scale(1.05);
         box-shadow: 0 10px 20px rgba(0,0,0,0.25);
     }
+    h1{
+        font-family: 'Jost', sans-serif;
+        font-size: 45px;
+    }
+    .players{
+        display: flex;
+        flex-direction: row;
+    }
+    .players-info{
+        align-items: center;
+        padding-left: 30%;
+        animation: fadeIn 1s ease-in-out forwards;
+        opacity: 0; 
+    }
+    .title-and-form{
+        font-family: 'Jost', sans-serif;
+        padding-left: 20px;
+    }
     .top-bar {
-         position: fixed;
+         display: flex;
+         align-items: center;
+         position: sticky;
          top:0;
          left:0;
          width:100%;
-         background-color:#441d5e;
-         color:#DAEFFB;
+         height: 4%;
+         background-color:whitesmoke;
+         border-bottom: 2px #E8E8E8 solid;
+         color:black;
          padding: 10px 20px;
          box-sizing: border;
     }
-      .top-bar-button {
+    .title{
+        padding-right: 10px;
+    }
+    .top-bar-button {
             text-decoration:none; 
-            color:#DAEFFB;
-            border: 1px black solid; 
-            border-radius: 20px; 
-            padding:4px 4px;
-            font-family: 'Jersey 20', sans-serif;
+            color:black;
+            padding:4px 12px;
+            font-family: 'Jost', sans-serif;
+            font-size: 18px;
+            align-items: center;
       }
       </style>
+      <script src="https://kit.fontawesome.com/9291b41967.js" crossorigin="anonymous"></script>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Jersey+20&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Jersey+20&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
    </head>
    <body>
       <div class="top-bar">
-         <a href="/player" class="top-bar-button">Players</a>
-         <a href="/games" class="top-bar-button">Games</a>
+        <div class="title">
+            <h1>Game <i class="fa-solid fa-gamepad"style="font-size:30px"></i> Recall</h1>
+        </div>
+        <div class="top-bar-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+            </svg>
+            <a href="/player" class="top-bar-button">Players</a>
+        </div>
+        <div class="top-bar-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-joystick" viewBox="0 0 16 16">
+                <path d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2"/>
+                <path d="M0 9.665v1.717a1 1 0 0 0 .553.894l6.553 3.277a2 2 0 0 0 1.788 0l6.553-3.277a1 1 0 0 0 .553-.894V9.665c0-.1-.06-.19-.152-.23L9.5 6.715v.993l5.227 2.178a.125.125 0 0 1 .001.23l-5.94 2.546a2 2 0 0 1-1.576 0l-5.94-2.546a.125.125 0 0 1 .001-.23L6.5 7.708l-.013-.988L.152 9.435a.25.25 0 0 0-.152.23"/>
+            </svg>            
+            <a href="/games" class="top-bar-button">Games</a>
+        </div>
       </div>
-      <div style="padding-top:60px;">
+      <div style="padding-top:5%;">
          {% block content %}{% endblock %}
       </div>
    </body>

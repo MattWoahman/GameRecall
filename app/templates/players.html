@@ -1,34 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 class="center-text" ><u>User Report</u></h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p class="center-text">
-            {{ form.steamid.label }}<br>
-            {{ form.steamid(size=32) }}
-        </p>
-        <p class="center-text">{{ form.submit() }}</p>
-    </form>
-    <div class="center-text">
-            {% if player %}
-                <a href="{{ player.profile_url}}"> <!--Takes you to their steam profile-->
-                <img src="{{ player.avatar}}" class="hover-pfp">
-                </a>
-                <p> Steam ID: {{ player.steam_id }} </p>
-                <p> Steam Name: <b>{{ player.steam_name }}</b> </p>
-                <p> Last log-off: {{ player.last_logoff }} </p>
-                <p> Account created: {{ player.time_created }} </p>
-                {% if player.gameextrainfo %}
-                    <p> Current Game: {{ player.gameextrainfo }} </p>
+    <div class="players">
+        <div class="title-and-form">
+            <h1 ><u>User Report</u></h1>
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.steamid.label }}<br>
+                    {{ form.steamid(size=32) }}
+                </p>
+                <p>{{ form.submit() }}</p>
+            </form>
+        </div>
+        <div class="players-info">
+                {% if player %}
+                    <a href="{{ player.profile_url}}"> <!--Takes you to their steam profile-->
+                    <img src="{{ player.avatar}}" class="hover-pfp">
+                    </a>
+                    <p> Steam ID: {{ player.steam_id }} </p>
+                    <p> Steam Name: <b>{{ player.steam_name }}</b> </p>
+                    <p> Last log-off: {{ player.last_logoff }} </p>
+                    <p> Account created: {{ player.time_created }} </p>
+                    {% if player.gameextrainfo %}
+                        <p> Current Game: {{ player.gameextrainfo }} </p>
+                    {% endif %}
+                    <div> <!-- Making this a separate division for formatting purposes - Jonny-->
+                        <p> 1<sup>st</sup> Most Played: {{ player.first_game }} </p>
+                        <p> 2<sup>nd</sup> Most Played: {{ player.second_game }} </p>
+                        <p> 3<sup>rd</sup> Most Played: {{ player.third_game }} </p>
+                    </div>
+                {% elif submitted %}
+                    <h1>{{ form.steamid.data }} is NOT a valid ID!</h1>
                 {% endif %}
-                <div class="center-left-aligned"> <!-- Making this a separate division for formatting purposes - Jonny-->
-                    <p> 1<sup>st</sup> Most Played: {{ player.first_game }} </p>
-                    <p> 2<sup>nd</sup> Most Played: {{ player.second_game }} </p>
-                    <p> 3<sup>rd</sup> Most Played: {{ player.third_game }} </p>
-                </div>
-            {% elif submitted %}
-                <h1>{{ form.steamid.data }} is NOT a valid ID!</h1>
-            {% endif %}
+        </div>
     </div>
 {% endblock %}
