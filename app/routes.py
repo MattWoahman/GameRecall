@@ -12,10 +12,13 @@ def index():
 def player():
     form = UserForm()
     player = ''
+    submitted = False
     if form.validate_on_submit():
         steam_id = form.steamid.data
         player = steam_player_id(steam_id)
-    return render_template('players.html', player=player, form=form)
+        submitted = True
+        print(player)
+    return render_template('players.html', player=player, form=form, submitted=submitted)
 
 @app.route("/games", methods=['GET','POST'])
 def games():
